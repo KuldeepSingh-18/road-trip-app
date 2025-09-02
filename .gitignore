@@ -1,4 +1,28 @@
+# Node.js
 node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
 .env
-dist/
+.env.local
+.env.development
+.env.production
+
+# Build outputs
+/frontend/build/
+/dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
 *.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# macOS
+.DS_Store
