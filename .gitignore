@@ -29,3 +29,19 @@ Thumbs.db
 
 # Coverage reports
 coverage/
+
+# PM2 or nodemon logs
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript build
+*.tsbuildinfo
+
+# Temporary files
+tmp/
+temp/
