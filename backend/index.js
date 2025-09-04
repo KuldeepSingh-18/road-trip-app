@@ -10,23 +10,26 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-//wire routes
-const tripRoutes = require('./routes/trips');
+// Wire Routes
+const userRoutes = require('./routes/userRoutes');
+const tripRoutes = require('./routes/tripRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+
+app.use('/api/users', userRoutes);
 app.use('/api/trips', tripRoutes);
+app.use('/api/reviews', reviewRoutes);
 
-
-// Routes
+// Root Route
 app.get('/', (req, res) => {
-  res.send('Backend is running');
+  res.send('Backend is running 🚀');
 });
 
-// Start server
+// Start Server + Mongo Connection
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
- 
-app.get('/', (req, res) => res.send('Backend is running'));
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch((err) => console.error("❌ MongoDB connection error:", err));
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
