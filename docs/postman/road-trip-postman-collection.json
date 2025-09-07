@@ -1,0 +1,183 @@
+{
+  "info": {
+    "name": "Road Trip App - API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Test suite for backend APIs: users, trips, reviews. Set environment variable base_url = http://localhost:5000"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"kuldeep\",\n  \"email\": \"kuldeep@example.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/users/register", "host": ["{{base_url}}"], "path": ["api","users","register"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201 || pm.response.code === 200) {",
+              "  try {",
+              "    const json = pm.response.json();",
+              "    if (json.token) pm.environment.set('token', json.token);",
+              "    if (json._id) pm.environment.set('userId', json._id);",
+              "  } catch(e) { console.log(e) }",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"kuldeep@example.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/users/login", "host": ["{{base_url}}"], "path": ["api","users","login"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "  const json = pm.response.json();",
+              "  if (json.token) pm.environment.set('token', json.token);",
+              "  if (json._id) pm.environment.set('userId', json._id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{base_url}}/api/users", "host": ["{{base_url}}"], "path": ["api","users"] }
+      }
+    },
+    {
+      "name": "Get Profile (logged-in)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{base_url}}/api/users/profile", "host": ["{{base_url}}"], "path": ["api","users","profile"] }
+      }
+    },
+    {
+      "name": "Create Trip (protected)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Goa Adventure\",\n  \"startLocation\": \"Mumbai\",\n  \"endLocation\": \"Goa\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/trips", "host": ["{{base_url}}"], "path": ["api","trips"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "  const json = pm.response.json();",
+              "  if (json._id) pm.environment.set('tripId', json._id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get All Trips (public)",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/api/trips", "host": ["{{base_url}}"], "path": ["api","trips"] }
+      }
+    },
+    {
+      "name": "Get Trip by ID",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/api/trips/{{tripId}}", "host": ["{{base_url}}"], "path": ["api","trips","{{tripId}}"] }
+      }
+    },
+    {
+      "name": "Update Trip (protected)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Goa Adventure - Updated\"\n}" },
+        "url": { "raw": "{{base_url}}/api/trips/{{tripId}}", "host": ["{{base_url}}"], "path": ["api","trips","{{tripId}}"] }
+      }
+    },
+    {
+      "name": "Delete Trip (protected)",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{base_url}}/api/trips/{{tripId}}", "host": ["{{base_url}}"], "path": ["api","trips","{{tripId}}"] }
+      }
+    },
+    {
+      "name": "Create Review for Trip (protected)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Amazing trip!\"\n}" },
+        "url": { "raw": "{{base_url}}/api/reviews/{{tripId}}", "host": ["{{base_url}}"], "path": ["api","reviews","{{tripId}}"] }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "  const json = pm.response.json();",
+              "  if (json._id) pm.environment.set('reviewId', json._id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Reviews for Trip",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/api/reviews/{{tripId}}", "host": ["{{base_url}}"], "path": ["api","reviews","{{tripId}}"] }
+      }
+    },
+    {
+      "name": "Delete Review (protected)",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{base_url}}/api/reviews/{{reviewId}}", "host": ["{{base_url}}"], "path": ["api","reviews","{{reviewId}}"] }
+      }
+    }
+  ]
+}
