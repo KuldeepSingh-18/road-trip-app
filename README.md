@@ -48,15 +48,21 @@ This app allows users to create custom trip itineraries, visualize routes on a m
 
 road-trip-app/  
 │  
-├── backend/ # Express.js server and API  
-│   ├── config/  # Database connection settings
-│   ├── controllers/  # API endpoint logic (optional)
-│   ├── middleware/  # Auth middleware
-│   ├── models/  # Mongoose schemas (User, Trip, Review)
-│   ├── routes/  # API route definitions
-│   ├── .env  # Environment variables
-│   └── index.js  # Server entry point
+├── backend/
+│   ├── config/ 
+│   ├── controllers/ 
+│   ├── middleware/ 
+│   ├── models/ 
+│   ├── routes/ 
+│   ├── .env 
+│   ├── index.js
+│   ├── package-lock.json
+│   └── package.json
 │  
+├── docs/
+│   ├── postman/
+│    └── road-trip-postman-collection.json
+│
 ├── frontend/ # React.js client  
 │   ├── node_modules/  
 │   ├── public/  
@@ -79,8 +85,6 @@ road-trip-app/
 │   │   ├── postcss.config.js  
 │   │   └── tailwind.config.js  
 │   ├── .gitignore  
-│   ├── package.json  
-│   └── package-lock.json
 │  
 ├── .gitignore  
 └── README.md  
