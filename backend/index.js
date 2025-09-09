@@ -39,3 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Global error handler
 const errorHandler = require('./middleware/errorHandler');
 app.use(errorHandler);
+
+//api routes
+const apiRoutes = require('./routes/apiRoutes');
+app.use('/api', apiRoutes);
