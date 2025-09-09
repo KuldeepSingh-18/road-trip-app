@@ -13,6 +13,7 @@ This app allows users to create custom trip itineraries, visualize routes on a m
 - [Getting Started](#getting-started)
 - [Available Frontend Scripts](#available-frontend-scripts)
 - [Deployment](#deployment)
+- [API Documentation](#api-documentation)
 - [License](#license)
 
 ## Features
@@ -25,6 +26,7 @@ This app allows users to create custom trip itineraries, visualize routes on a m
 *   **Persistent Storage**: Save trip and review data using a MongoDB database.
 *   **Responsive Design**: Adapted frontend design using Tailwind CSS.
 *   **Dummy Data for Testing**: Sample trips display when API is not connected.
+*   **API Integration**: Real-time Weather, Route Planning, and Nearby Places using OpenWeatherMap, OpenRouteService, and Foursquare APIs.
 
 ## Technologies Used
 
@@ -35,6 +37,7 @@ This app allows users to create custom trip itineraries, visualize routes on a m
 *   **Mongoose**: MongoDB object data modeling (ODM) for Node.js.
 *   **bcryptjs**: For password hashing and security.
 *   **jsonwebtoken**: For user authentication.
+*   **axios**: For making external API HTTP requests.
 
 ### Frontend
 *   **React**: UI library.
@@ -49,12 +52,16 @@ road-trip-app/
 ├── backend/  
 │   ├── config/  
 │   ├── controllers/  
-│   │   └── authController.js  
+│   │   ├── authController.js  
+│   │   └── apiController.js  
 │   ├── middleware/  
 │   ├── models/  
 │   │   └── User.js  
 │   ├── routes/  
-│   │   └── userRoutes.js  
+│   │   ├── userRoutes.js  
+│   │   └── apiRoutes.js  
+│   ├── utils/  
+│   │   └── apiService.js  
 │   ├── .env  
 │   ├── index.js  
 │   ├── package-lock.json  
@@ -112,9 +119,13 @@ road-trip-app/
 
     Create a `.env` file:
     ```env
-    MONGO_URI=mongodb://127.0.0.1:27017/roadtripdb
+    MONGO_URI=mongodb://127.0.0.1:27017/road_trip_app
     PORT=5000
     JWT_SECRET=your_jwt_secret_key
+    JWT_EXPIRES=30d
+    OPENWEATHER_API_KEY=c73085cd9d1208c16e7f7bb7ba80c468
+    OPENROUTESERVICE_API_KEY=YOUR_OPENROUTESERVICE_KEY
+    FOURSQUARE_API_KEY=YOUR_FOURSQUARE_API_KEY
     ```
 
     Run backend:
@@ -142,6 +153,10 @@ road-trip-app/
 ## Deployment
 
 Follow the [official guide](https://create-react-app.dev/docs/deployment)
+
+## API Documentation
+
+[API Documentation PDF](./docs/api-documentation.pdf)
 
 ## License
 
