@@ -1,3 +1,4 @@
+// frontend/src/services/api.js
 import axios from 'axios';
 
 // Base URL of backend API
@@ -10,7 +11,7 @@ const api = axios.create({
 
 // Add JWT Token to headers (if exists)
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');  // Or your way of storing token
+  const token = localStorage.getItem('token'); // Stored after login/register
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

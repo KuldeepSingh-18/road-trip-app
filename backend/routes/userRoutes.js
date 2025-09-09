@@ -1,4 +1,3 @@
-// routes/userRoutes.js
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -7,33 +6,25 @@ const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-// Generate JWT
+// Helper function to generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-// @desc Register new user
+// Register new user
 router.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
-    if (!username || !email || !password) {
+    if (!username || !email || !password)
       return res.status(400).json({ error: 'Please provide all fields' });
-    }
 
     const userExists = await User.findOne({ email });
-    if (userExists) {
-      return res.status(400).json({ error: 'User already exists' });
-    }
+    if (userExists) return res.status(400).json({ error: 'User already exists' });
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await User.create({
-      username,
-      email,
-      password: hashedPassword,
-    });
+    const user = await User.create({ username, email, password: hashedPassword });
 
     res.status(201).json({
       _id: user.id,
@@ -46,7 +37,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// @desc Login user
+// Login user
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -67,17 +58,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// @desc Get all users
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find().populate('roadTrips');
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// @desc Get logged-in user profile (protected)
+// Get logged-in user profile
 router.get('/profile', protect, async (req, res) => {
   try {
     res.json(req.user);
@@ -86,29 +67,13 @@ router.get('/profile', protect, async (req, res) => {
   }
 });
 
-// @desc Update user
-router.put('/:id', protect, async (req, res) => {
+// Get all users (for dev/testing purposes)
+router.get('/', async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
-    if (!updatedUser) return res.status(404).json({ error: 'User not found' });
-    res.json(updatedUser);
+    const users = await User.find().select('-password');
+    res.json(users);
   } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
-
-// @desc Delete user
-router.delete('/:id', protect, async (req, res) => {
-  try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
-    if (!deletedUser) return res.status(404).json({ error: 'User not found' });
-    res.json({ message: 'User deleted' });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 

@@ -36,8 +36,6 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1); // Stop app if DB fails
   });
 
-// Global error handler (optional but recommended)
-app.use((err, req, res, next) => {
-  console.error("🔥 Global error:", err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
-});
+// Global error handler
+const errorHandler = require('./middleware/errorHandler');
+app.use(errorHandler);
