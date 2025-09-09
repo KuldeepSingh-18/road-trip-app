@@ -1,4 +1,3 @@
-readme =>
 # Road Trip Planner App
 
 ![Road Trip App]
@@ -14,12 +13,11 @@ This app allows users to create custom trip itineraries, visualize routes on a m
 - [Getting Started](#getting-started)
 - [Available Frontend Scripts](#available-frontend-scripts)
 - [Deployment](#deployment)
-- [Learn More (Create React App)](#learn-more-create-react-app)
 - [License](#license)
 
 ## Features
 
-*   **User Authentication**: Secure user registration and login functionality.
+*   **User Authentication**: Secure user registration, login, and protected route access.
 *   **Trip Management**: Create, view, update, and delete personalized road trip plans.
 *   **Interactive Maps**: Visualize your trip with map integration to see routes and waypoints.
 *   **Points of Interest (POI)**: Discover and add local attractions, restaurants, and other locations to your itinerary.
@@ -48,26 +46,32 @@ This app allows users to create custom trip itineraries, visualize routes on a m
 
 road-trip-app/  
 │  
-├── backend/
-│   ├── config/ 
-│   ├── controllers/ 
-│   ├── middleware/ 
-│   ├── models/ 
-│   ├── routes/ 
-│   ├── .env 
-│   ├── index.js
-│   ├── package-lock.json
-│   └── package.json
+├── backend/  
+│   ├── config/  
+│   ├── controllers/  
+│   │   └── authController.js  
+│   ├── middleware/  
+│   ├── models/  
+│   │   └── User.js  
+│   ├── routes/  
+│   │   └── userRoutes.js  
+│   ├── .env  
+│   ├── index.js  
+│   ├── package-lock.json  
+│   └── package.json  
 │  
-├── docs/
-│   ├── postman/
-│    └── road-trip-postman-collection.json
-│
-├── frontend/ # React.js client  
+├── docs/  
+│   └── postman/  
+│       └── road-trip-postman-collection.json  
+│  
+├── frontend/  
 │   ├── node_modules/  
 │   ├── public/  
 │   ├── src/  
 │   │   ├── components/  
+│   │   │   ├── Auth/  
+│   │   │   │   ├── Login.js  
+│   │   │   │   └── Register.js  
 │   │   │   ├── Home/  
 │   │   │   │   └── Home.js  
 │   │   │   ├── UserProfile/  
@@ -76,6 +80,8 @@ road-trip-app/
 │   │   │   │   └── RoadTripDetails.js  
 │   │   │   └── RoadTripsList/  
 │   │   │       └── RoadTripsList.js  
+│   │   ├── context/  
+│   │   │   └── AuthContext.js  
 │   │   ├── services/  
 │   │   │   └── api.js  
 │   │   ├── App.css  
@@ -85,6 +91,7 @@ road-trip-app/
 │   │   ├── postcss.config.js  
 │   │   └── tailwind.config.js  
 │   ├── .gitignore  
+│   └── package.json  
 │  
 ├── .gitignore  
 └── README.md  
@@ -138,4 +145,4 @@ Follow the [official guide](https://create-react-app.dev/docs/deployment)
 
 ## License
 
-MIT License  
+MIT License
