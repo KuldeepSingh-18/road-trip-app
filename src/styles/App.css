@@ -1,0 +1,686 @@
+/* src/styles/App.css */
+
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --primary-color: #3498db;
+  --primary-dark: #2980b9;
+  --secondary-color: #2ecc71;
+  --secondary-dark: #27ae60;
+  --accent-color: #f39c12;
+  --danger-color: #e74c3c;
+  --light-gray: #f5f7fa;
+  --medium-gray: #e5e7eb;
+  --dark-gray: #4a5568;
+  --text-color: #2d3748;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--light-gray);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+button, .btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:disabled, .btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ===== LAYOUT STYLES ===== */
+.home-page, .map-view-page, .trip-summary-page, .not-found-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.map-header, .summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  color: var(--text-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  background-color: transparent;
+  border: 1px solid var(--medium-gray);
+}
+.summary-button {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.back-button:hover {
+  background-color: var(--light-gray);
+  color: var(--text-color);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.summary-button:hover {
+  color: var(--primary-dark);
+}
+
+/* ===== SEARCH FORM ===== */
+.search-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.search-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.search-results {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.search-results h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--text-color);
+}
+
+.search-results ul {
+  list-style: none;
+}
+
+.search-results li {
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-results li:hover {
+  background-color: var(--light-gray);
+}
+
+/* ===== DESTINATION CARD ===== */
+.destinations-list {
+  margin-bottom: 2rem;
+}
+
+.destination-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.destination-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.destination-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.destination-info {
+  flex: 1;
+}
+
+.destination-info h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.destination-info p {
+  color: var(--dark-gray);
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.destination-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-move-up, .btn-move-down, .btn-remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-move-up:hover, .btn-move-down:hover {
+  background-color: var(--medium-gray);
+}
+
+.btn-remove {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--danger-color);
+}
+
+.btn-remove:hover {
+  background-color: var(--danger-color);
+  color: var(--white);
+}
+
+.trip-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-reset {
+  background-color: var(--danger-color);
+}
+
+.btn-reset:hover {
+  background-color: #c0392b;
+}
+
+.btn-view-map {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.btn-view-map:hover {
+  background-color: var(--secondary-dark);
+  color: var(--white);
+}
+
+/* ===== MAP STYLES ===== */
+.map-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.no-destinations {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.no-destinations p {
+  margin-bottom: 1.5rem;
+  color: var(--dark-gray);
+}
+
+.btn-add-destinations {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+
+/* ===== TRIP SUMMARY STYLES ===== */
+.trip-summary {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.trip-summary h2 {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem;
+  background-color: var(--light-gray);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* ===== TRIP SUMMARY PAGE STYLES ===== */
+.trip-overview {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.destinations-overview, .trip-stats, .fuel-calculator {
+  margin-bottom: 2.5rem;
+}
+
+.destinations-list {
+  list-style-position: inside;
+  padding-left: 1rem;
+}
+
+.destinations-list li {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.destinations-list li:last-child {
+  border-bottom: none;
+}
+
+.destinations-list strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: var(--light-gray);
+  border-radius: var(--radius-sm);
+}
+
+.fuel-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-export {
+  background-color: var(--accent-color);
+}
+
+.btn-export:hover {
+  background-color: #d35400;
+}
+
+.btn-edit-trip {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.btn-edit-trip:hover {
+  background-color: var(--secondary-dark);
+  color: var(--white);
+}
+
+/* ===== 404 PAGE STYLES ===== */
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.not-found-page h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.not-found-page p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--dark-gray);
+}
+
+.btn-home {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .map-header, .summary-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .summary-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .fuel-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn-export, .btn-edit-trip {
+    width: 100%;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-page, .map-view-page, .trip-summary-page {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.destination-card {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Add animation delay for list items to create a cascade effect */
+.destinations-list li:nth-child(1) { animation-delay: 0.1s; }
+.destinations-list li:nth-child(2) { animation-delay: 0.2s; }
+.destinations-list li:nth-child(3) { animation-delay: 0.3s; }
+.destinations-list li:nth-child(4) { animation-delay: 0.4s; }
+.destinations-list li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Error message styling */
+.error-message {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--danger-color);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--danger-color);
+}
+
+/* Loading indicator */
+.loading-indicator {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--danger-color);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--danger-color);
+}
+
+/* Loading indicator */
+.loading-indicator {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.back-button, .summary-button, .btn-add-destinations, .btn-start-planning, .btn-edit-trip {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.back-button:hover::before {
+  transform: translateX(-3px);
+}
+
+.back-button:hover, .summary-button:hover, .btn-add-destinations:hover, 
+.btn-start-planning:hover, .btn-edit-trip:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.summary-button, .btn-add-destinations, .btn-start-planning, .btn-edit-trip {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.5rem;
+}
+
+.summary-button:hover, .btn-add-destinations:hover, 
+.btn-start-planning:hover, .btn-edit-trip:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  text-decoration: none;
+}
+/* ====== END OF STYLES ====== */
